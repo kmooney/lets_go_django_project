@@ -1,0 +1,20 @@
+{% extends 'lister/base.html' %}
+{% block contents %}
+<p> Pick a list
+        <ol>
+	{% for l in my_lists %}
+	<li><a href="/{{ l.slug }}"> {{l.name}} </a></li>
+	{% empty %} 
+        <li>No lists available!</li>
+        {% endfor %}
+        </ol>
+</p>
+<p>
+   	Or, make a new one: 
+	<form method=POST action="/add/">
+        {% csrf_token %}
+	{{ form }} 
+        <input type="submit" value="Make a List"/>
+	</form>
+</p>
+{% endblock %}
